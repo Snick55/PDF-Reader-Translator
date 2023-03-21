@@ -3,7 +3,9 @@ package com.snick.pdf_reader_translator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.snick.pdf_reader_translator.presentation.FilesFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

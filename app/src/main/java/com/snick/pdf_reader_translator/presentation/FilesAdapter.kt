@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.snick.pdf_reader_translator.R
 import com.snick.pdf_reader_translator.databinding.FileItemBinding
 import java.io.File
 
@@ -33,7 +34,8 @@ class FilesAdapter : RecyclerView.Adapter<FilesAdapter.MyViewHolder>() {
     class MyViewHolder(private val binding: FileItemBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(file: File){
-            Toast.makeText(binding.root.context,"Name of file = ${file.name}",Toast.LENGTH_LONG).show()
+            binding.pdfImage.setImageResource(R.drawable.ic_pdf_placeholder)
+            binding.pdfTextview.text = file.name
         }
     }
 

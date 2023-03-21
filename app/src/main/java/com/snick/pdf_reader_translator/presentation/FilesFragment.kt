@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,14 +20,17 @@ import androidx.activity.result.contract.ActivityResultContracts.RequestPermissi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.snick.pdf_reader_translator.R
 import com.snick.pdf_reader_translator.databinding.FilesFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FilesFragment : Fragment() {
 
     private lateinit var binding: FilesFragmentBinding
-    private  var viewModel = FilesViewModel()
+    private  val viewModel by viewModels<FilesViewModel>()
     private val requestStoragePermissionLauncher = registerForActivityResult(
         RequestPermission(),
         ::onGotStoragePermissionResult
@@ -44,18 +48,23 @@ class FilesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        requestStoragePermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-
         val adapter = FilesAdapter()
         binding.filesAdapter.adapter = adapter
         binding.filesAdapter.layoutManager = GridLayoutManager(requireContext(), 3)
+        requestStoragePermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+
+        viewModel.pdfFiles.observe(viewLifecycleOwner){
+            adapter.setupAdapter(it)
+        }
+
+
     }
 
 
     private fun onGotStoragePermissionResult(granted: Boolean) {
         if (granted) {
-            viewModel.getPdfFiles(Environment.getExternalStorageDirectory())
+            val file = Environment.getExternalStorageDirectory()
+            viewModel.getPdfFiles(file)
         } else {
             if (!shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
                 askUserForOpeningAppSettings()
