@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ import com.snick.pdf_reader_translator.databinding.FilesFragmentBinding
 class FilesFragment : Fragment() {
 
     private lateinit var binding: FilesFragmentBinding
+    private  var viewModel = FilesViewModel()
     private val requestStoragePermissionLauncher = registerForActivityResult(
         RequestPermission(),
         ::onGotStoragePermissionResult
@@ -53,7 +55,7 @@ class FilesFragment : Fragment() {
 
     private fun onGotStoragePermissionResult(granted: Boolean) {
         if (granted) {
-            //make viewModel.method()
+            viewModel.getPdfFiles(Environment.getExternalStorageDirectory())
         } else {
             if (!shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
                 askUserForOpeningAppSettings()
