@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/nikita/AndroidStudioProjects/PDFReaderTranslator/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/nikita/AndroidStudioProjects/PDFReaderTranslator/app/src/main/res/layout/details_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/nikita/AndroidStudioProjects/PDFReaderTranslator/app/src/main/res/layout/file_item.xml" value="0.67" />
         <entry key="..\:/Users/nikita/AndroidStudioProjects/PDFReaderTranslator/app/src/main/res/layout/files_fragment.xml" value="0.27421875" />
       </map>

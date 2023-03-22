@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/filesFragment">
+
+    <fragment
+        android:id="@+id/filesFragment"
+        android:name="com.snick.pdf_reader_translator.presentation.files.FilesFragment"
+        android:label="Files"
+        tools:layout="@layout/files_fragment"
+        >
+        <action
+            android:id="@+id/action_filesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.snick.pdf_reader_translator.presentation.details.DetailsFragment"
+        android:label="Details"
+        tools:layout="@layout/details_fragment">
+        <argument
+            android:name="filePath"
+            app:argType="string" />
+    </fragment>
+</navigation>

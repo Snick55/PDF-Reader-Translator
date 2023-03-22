@@ -1,4 +1,4 @@
-package com.snick.pdf_reader_translator.presentation
+package com.snick.pdf_reader_translator.presentation.files
 
 import android.util.Log
 import androidx.lifecycle.LiveData
